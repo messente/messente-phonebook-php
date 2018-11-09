@@ -12,3 +12,6 @@ composer.lock
 # Swagger
 
 /.swagger-codegen
+
+.openapi-*
+git_push.sh

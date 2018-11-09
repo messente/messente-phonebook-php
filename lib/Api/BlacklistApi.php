@@ -90,29 +90,29 @@ class BlacklistApi
     /**
      * Operation addToBlacklist
      *
-     * @param  \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist $phone_number_submitted_to_blacklist phone_number_submitted_to_blacklist (optional)
+     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function addToBlacklist($phone_number_submitted_to_blacklist = null)
+    public function addToBlacklist($number_to_blacklist)
     {
-        $this->addToBlacklistWithHttpInfo($phone_number_submitted_to_blacklist);
+        $this->addToBlacklistWithHttpInfo($number_to_blacklist);
     }
 
     /**
      * Operation addToBlacklistWithHttpInfo
      *
-     * @param  \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist $phone_number_submitted_to_blacklist (optional)
+     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addToBlacklistWithHttpInfo($phone_number_submitted_to_blacklist = null)
+    public function addToBlacklistWithHttpInfo($number_to_blacklist)
     {
-        $request = $this->addToBlacklistRequest($phone_number_submitted_to_blacklist);
+        $request = $this->addToBlacklistRequest($number_to_blacklist);
 
         try {
             $options = $this->createHttpClientOption();
@@ -188,14 +188,14 @@ class BlacklistApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist $phone_number_submitted_to_blacklist (optional)
+     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsync($phone_number_submitted_to_blacklist = null)
+    public function addToBlacklistAsync($number_to_blacklist)
     {
-        return $this->addToBlacklistAsyncWithHttpInfo($phone_number_submitted_to_blacklist)
+        return $this->addToBlacklistAsyncWithHttpInfo($number_to_blacklist)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -208,15 +208,15 @@ class BlacklistApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist $phone_number_submitted_to_blacklist (optional)
+     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsyncWithHttpInfo($phone_number_submitted_to_blacklist = null)
+    public function addToBlacklistAsyncWithHttpInfo($number_to_blacklist)
     {
         $returnType = '';
-        $request = $this->addToBlacklistRequest($phone_number_submitted_to_blacklist);
+        $request = $this->addToBlacklistRequest($number_to_blacklist);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -244,13 +244,19 @@ class BlacklistApi
     /**
      * Create request for operation 'addToBlacklist'
      *
-     * @param  \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist $phone_number_submitted_to_blacklist (optional)
+     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addToBlacklistRequest($phone_number_submitted_to_blacklist = null)
+    protected function addToBlacklistRequest($number_to_blacklist)
     {
+        // verify the required parameter 'number_to_blacklist' is set
+        if ($number_to_blacklist === null || (is_array($number_to_blacklist) && count($number_to_blacklist) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $number_to_blacklist when calling addToBlacklist'
+            );
+        }
 
         $resourcePath = '/phonebook/blacklist';
         $formParams = [];
@@ -263,8 +269,8 @@ class BlacklistApi
 
         // body params
         $_tempBody = null;
-        if (isset($phone_number_submitted_to_blacklist)) {
-            $_tempBody = $phone_number_submitted_to_blacklist;
+        if (isset($number_to_blacklist)) {
+            $_tempBody = $number_to_blacklist;
         }
 
         if ($multipart) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * PhoneNumberSubmittedToBlacklist
+ * NumberToBlacklist
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * PhoneNumberSubmittedToBlacklist Class Doc Comment
+ * NumberToBlacklist Class Doc Comment
  *
  * @category Class
- * @description Phone number in e.164 format
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PhoneNumberSubmittedToBlacklist implements ModelInterface, ArrayAccess
+class NumberToBlacklist implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class PhoneNumberSubmittedToBlacklist implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PhoneNumberSubmittedToBlacklist';
+    protected static $openAPIModelName = 'NumberToBlacklist';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -221,7 +220,7 @@ class PhoneNumberSubmittedToBlacklist implements ModelInterface, ArrayAccess
     /**
      * Sets phone_number
      *
-     * @param string $phone_number phone_number
+     * @param string $phone_number Phone number in e.164 format
      *
      * @return $this
      */

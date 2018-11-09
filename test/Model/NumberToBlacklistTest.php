@@ -1,6 +1,6 @@
 <?php
 /**
- * PhoneNumberSubmittedToBlacklistTest
+ * NumberToBlacklistTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace OpenAPI\Client;
 
 /**
- * PhoneNumberSubmittedToBlacklistTest Class Doc Comment
+ * NumberToBlacklistTest Class Doc Comment
  *
  * @category    Class
- * @description Phone number in e.164 format
+ * @description NumberToBlacklist
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class PhoneNumberSubmittedToBlacklistTest extends \PHPUnit_Framework_TestCase
+class NumberToBlacklistTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,9 +70,9 @@ class PhoneNumberSubmittedToBlacklistTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "PhoneNumberSubmittedToBlacklist"
+     * Test "NumberToBlacklist"
      */
-    public function testPhoneNumberSubmittedToBlacklist()
+    public function testNumberToBlacklist()
     {
     }
 

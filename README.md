@@ -67,10 +67,10 @@ $apiInstance = new OpenAPI\Client\Api\BlacklistApi(
     new GuzzleHttp\Client(),
     $config
 );
-$phone_number_submitted_to_blacklist = new \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist(); // \OpenAPI\Client\Model\PhoneNumberSubmittedToBlacklist | 
+$number_to_blacklist = new \OpenAPI\Client\Model\NumberToBlacklist(); // \OpenAPI\Client\Model\NumberToBlacklist | Phone number to be blacklisted
 
 try {
-    $apiInstance->addToBlacklist($phone_number_submitted_to_blacklist);
+    $apiInstance->addToBlacklist($number_to_blacklist);
 } catch (Exception $e) {
     echo 'Exception when calling BlacklistApi->addToBlacklist: ', $e->getMessage(), PHP_EOL;
 }
@@ -94,7 +94,7 @@ Class | Method | HTTP request | Description
  - [ErrorItem](docs/Model/ErrorItem.md)
  - [ErrorResponse](docs/Model/ErrorResponse.md)
  - [FetchBlacklistSuccess](docs/Model/FetchBlacklistSuccess.md)
- - [PhoneNumberSubmittedToBlacklist](docs/Model/PhoneNumberSubmittedToBlacklist.md)
+ - [NumberToBlacklist](docs/Model/NumberToBlacklist.md)
  - [ResponseErrorCode](docs/Model/ResponseErrorCode.md)
  - [ResponseErrorTitle](docs/Model/ResponseErrorTitle.md)
 
