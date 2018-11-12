@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Messente\Phonebook\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Messente\Phonebook\ObjectSerializer;
 
 /**
  * ErrorResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -57,7 +57,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'errors' => '\OpenAPI\Client\Model\ErrorItem[]'
+        'errors' => '\Messente\Phonebook\Model\ErrorItem[]'
     ];
 
     /**
@@ -210,7 +210,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \OpenAPI\Client\Model\ErrorItem[]
+     * @return \Messente\Phonebook\Model\ErrorItem[]
      */
     public function getErrors()
     {
@@ -220,7 +220,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \OpenAPI\Client\Model\ErrorItem[] $errors errors
+     * @param \Messente\Phonebook\Model\ErrorItem[] $errors errors
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,15 +27,15 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
-use \OpenAPI\Client\ObjectSerializer;
+namespace Messente\Phonebook\Model;
+use \Messente\Phonebook\ObjectSerializer;
 
 /**
  * ResponseErrorTitle Class Doc Comment
  *
  * @category Class
  * @description Textual value which corresponds to ResponseErrorCode
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Messente\Phonebook\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Messente\Phonebook\ObjectSerializer;
 
 /**
  * ErrorItem Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -57,9 +57,9 @@ class ErrorItem implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => '\OpenAPI\Client\Model\ResponseErrorTitle',
+        'title' => '\Messente\Phonebook\Model\ResponseErrorTitle',
         'detail' => 'string',
-        'code' => '\OpenAPI\Client\Model\ResponseErrorCode'
+        'code' => '\Messente\Phonebook\Model\ResponseErrorCode'
     ];
 
     /**
@@ -228,7 +228,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
     /**
      * Gets title
      *
-     * @return \OpenAPI\Client\Model\ResponseErrorTitle
+     * @return \Messente\Phonebook\Model\ResponseErrorTitle
      */
     public function getTitle()
     {
@@ -238,7 +238,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
     /**
      * Sets title
      *
-     * @param \OpenAPI\Client\Model\ResponseErrorTitle $title title
+     * @param \Messente\Phonebook\Model\ResponseErrorTitle $title title
      *
      * @return $this
      */
@@ -276,7 +276,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
     /**
      * Gets code
      *
-     * @return \OpenAPI\Client\Model\ResponseErrorCode
+     * @return \Messente\Phonebook\Model\ResponseErrorCode
      */
     public function getCode()
     {
@@ -286,7 +286,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
     /**
      * Sets code
      *
-     * @param \OpenAPI\Client\Model\ResponseErrorCode $code code
+     * @param \Messente\Phonebook\Model\ResponseErrorCode $code code
      *
      * @return $this
      */

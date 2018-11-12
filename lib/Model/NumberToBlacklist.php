@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Messente\Phonebook\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Messente\Phonebook\ObjectSerializer;
 
 /**
  * NumberToBlacklist Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -57,7 +57,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phone_number' => 'string'
+        'phoneNumber' => 'string'
     ];
 
     /**
@@ -66,7 +66,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phone_number' => null
+        'phoneNumber' => null
     ];
 
     /**
@@ -96,7 +96,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phone_number' => 'phoneNumber'
+        'phoneNumber' => 'phoneNumber'
     ];
 
     /**
@@ -105,7 +105,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phone_number' => 'setPhoneNumber'
+        'phoneNumber' => 'setPhoneNumber'
     ];
 
     /**
@@ -114,7 +114,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phone_number' => 'getPhoneNumber'
+        'phoneNumber' => 'getPhoneNumber'
     ];
 
     /**
@@ -177,7 +177,7 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phone_number'] = isset($data['phone_number']) ? $data['phone_number'] : null;
+        $this->container['phoneNumber'] = isset($data['phoneNumber']) ? $data['phoneNumber'] : null;
     }
 
     /**
@@ -189,8 +189,8 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['phone_number'] === null) {
-            $invalidProperties[] = "'phone_number' can't be null";
+        if ($this->container['phoneNumber'] === null) {
+            $invalidProperties[] = "'phoneNumber' can't be null";
         }
         return $invalidProperties;
     }
@@ -208,25 +208,25 @@ class NumberToBlacklist implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets phone_number
+     * Gets phoneNumber
      *
      * @return string
      */
     public function getPhoneNumber()
     {
-        return $this->container['phone_number'];
+        return $this->container['phoneNumber'];
     }
 
     /**
-     * Sets phone_number
+     * Sets phoneNumber
      *
-     * @param string $phone_number Phone number in e.164 format
+     * @param string $phoneNumber Phone number in e.164 format
      *
      * @return $this
      */
-    public function setPhoneNumber($phone_number)
+    public function setPhoneNumber($phoneNumber)
     {
-        $this->container['phone_number'] = $phone_number;
+        $this->container['phoneNumber'] = $phoneNumber;
 
         return $this;
     }

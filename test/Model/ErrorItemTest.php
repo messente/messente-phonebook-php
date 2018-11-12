@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,14 +27,14 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace Messente\Phonebook;
 
 /**
  * ErrorItemTest Class Doc Comment
  *
  * @category    Class
  * @description ErrorItem
- * @package     OpenAPI\Client
+ * @package     Messente\Phonebook
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

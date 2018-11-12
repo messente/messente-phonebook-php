@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Messente\Phonebook\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use Messente\Phonebook\ApiException;
+use Messente\Phonebook\Configuration;
+use Messente\Phonebook\HeaderSelector;
+use Messente\Phonebook\ObjectSerializer;
 
 /**
  * BlacklistApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -90,29 +90,29 @@ class BlacklistApi
     /**
      * Operation addToBlacklist
      *
-     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function addToBlacklist($number_to_blacklist)
+    public function addToBlacklist($numberToBlacklist)
     {
-        $this->addToBlacklistWithHttpInfo($number_to_blacklist);
+        $this->addToBlacklistWithHttpInfo($numberToBlacklist);
     }
 
     /**
      * Operation addToBlacklistWithHttpInfo
      *
-     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addToBlacklistWithHttpInfo($number_to_blacklist)
+    public function addToBlacklistWithHttpInfo($numberToBlacklist)
     {
-        $request = $this->addToBlacklistRequest($number_to_blacklist);
+        $request = $this->addToBlacklistRequest($numberToBlacklist);
 
         try {
             $options = $this->createHttpClientOption();
@@ -149,7 +149,7 @@ class BlacklistApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -157,7 +157,7 @@ class BlacklistApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -165,7 +165,7 @@ class BlacklistApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -173,7 +173,7 @@ class BlacklistApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -188,14 +188,14 @@ class BlacklistApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsync($number_to_blacklist)
+    public function addToBlacklistAsync($numberToBlacklist)
     {
-        return $this->addToBlacklistAsyncWithHttpInfo($number_to_blacklist)
+        return $this->addToBlacklistAsyncWithHttpInfo($numberToBlacklist)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -208,15 +208,15 @@ class BlacklistApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsyncWithHttpInfo($number_to_blacklist)
+    public function addToBlacklistAsyncWithHttpInfo($numberToBlacklist)
     {
         $returnType = '';
-        $request = $this->addToBlacklistRequest($number_to_blacklist);
+        $request = $this->addToBlacklistRequest($numberToBlacklist);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -244,17 +244,17 @@ class BlacklistApi
     /**
      * Create request for operation 'addToBlacklist'
      *
-     * @param  \OpenAPI\Client\Model\NumberToBlacklist $number_to_blacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addToBlacklistRequest($number_to_blacklist)
+    protected function addToBlacklistRequest($numberToBlacklist)
     {
-        // verify the required parameter 'number_to_blacklist' is set
-        if ($number_to_blacklist === null || (is_array($number_to_blacklist) && count($number_to_blacklist) === 0)) {
+        // verify the required parameter 'numberToBlacklist' is set
+        if ($numberToBlacklist === null || (is_array($numberToBlacklist) && count($numberToBlacklist) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $number_to_blacklist when calling addToBlacklist'
+                'Missing the required parameter $numberToBlacklist when calling addToBlacklist'
             );
         }
 
@@ -269,8 +269,8 @@ class BlacklistApi
 
         // body params
         $_tempBody = null;
-        if (isset($number_to_blacklist)) {
-            $_tempBody = $number_to_blacklist;
+        if (isset($numberToBlacklist)) {
+            $_tempBody = $numberToBlacklist;
         }
 
         if ($multipart) {
@@ -342,9 +342,9 @@ class BlacklistApi
      * Operation fetchBlacklist
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FetchBlacklistSuccess|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \Messente\Phonebook\Model\FetchBlacklistSuccess|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
      */
     public function fetchBlacklist()
     {
@@ -356,9 +356,9 @@ class BlacklistApi
      * Operation fetchBlacklistWithHttpInfo
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\FetchBlacklistSuccess|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Messente\Phonebook\Model\FetchBlacklistSuccess|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function fetchBlacklistWithHttpInfo()
     {
@@ -395,44 +395,44 @@ class BlacklistApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\FetchBlacklistSuccess' === '\SplFileObject') {
+                    if ('\Messente\Phonebook\Model\FetchBlacklistSuccess' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\FetchBlacklistSuccess', []),
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\FetchBlacklistSuccess', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ErrorResponse' === '\SplFileObject') {
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 default:
-                    if ('\OpenAPI\Client\Model\ErrorResponse' === '\SplFileObject') {
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\FetchBlacklistSuccess';
+            $returnType = '\Messente\Phonebook\Model\FetchBlacklistSuccess';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -451,7 +451,7 @@ class BlacklistApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\FetchBlacklistSuccess',
+                        '\Messente\Phonebook\Model\FetchBlacklistSuccess',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -459,7 +459,7 @@ class BlacklistApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -467,7 +467,7 @@ class BlacklistApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -507,7 +507,7 @@ class BlacklistApi
      */
     public function fetchBlacklistAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\FetchBlacklistSuccess';
+        $returnType = '\Messente\Phonebook\Model\FetchBlacklistSuccess';
         $request = $this->fetchBlacklistRequest();
 
         return $this->client
@@ -634,29 +634,29 @@ class BlacklistApi
     /**
      * Operation removeFromBlacklist
      *
-     * @param  string $phone_number The phone number to be deleted (required)
+     * @param  string $phoneNumber The phone number to be deleted (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function removeFromBlacklist($phone_number)
+    public function removeFromBlacklist($phoneNumber)
     {
-        $this->removeFromBlacklistWithHttpInfo($phone_number);
+        $this->removeFromBlacklistWithHttpInfo($phoneNumber);
     }
 
     /**
      * Operation removeFromBlacklistWithHttpInfo
      *
-     * @param  string $phone_number The phone number to be deleted (required)
+     * @param  string $phoneNumber The phone number to be deleted (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function removeFromBlacklistWithHttpInfo($phone_number)
+    public function removeFromBlacklistWithHttpInfo($phoneNumber)
     {
-        $request = $this->removeFromBlacklistRequest($phone_number);
+        $request = $this->removeFromBlacklistRequest($phoneNumber);
 
         try {
             $options = $this->createHttpClientOption();
@@ -693,7 +693,7 @@ class BlacklistApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -701,7 +701,7 @@ class BlacklistApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -709,7 +709,7 @@ class BlacklistApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -717,7 +717,7 @@ class BlacklistApi
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorResponse',
+                        '\Messente\Phonebook\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -732,14 +732,14 @@ class BlacklistApi
      *
      * 
      *
-     * @param  string $phone_number The phone number to be deleted (required)
+     * @param  string $phoneNumber The phone number to be deleted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeFromBlacklistAsync($phone_number)
+    public function removeFromBlacklistAsync($phoneNumber)
     {
-        return $this->removeFromBlacklistAsyncWithHttpInfo($phone_number)
+        return $this->removeFromBlacklistAsyncWithHttpInfo($phoneNumber)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -752,15 +752,15 @@ class BlacklistApi
      *
      * 
      *
-     * @param  string $phone_number The phone number to be deleted (required)
+     * @param  string $phoneNumber The phone number to be deleted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeFromBlacklistAsyncWithHttpInfo($phone_number)
+    public function removeFromBlacklistAsyncWithHttpInfo($phoneNumber)
     {
         $returnType = '';
-        $request = $this->removeFromBlacklistRequest($phone_number);
+        $request = $this->removeFromBlacklistRequest($phoneNumber);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -788,17 +788,17 @@ class BlacklistApi
     /**
      * Create request for operation 'removeFromBlacklist'
      *
-     * @param  string $phone_number The phone number to be deleted (required)
+     * @param  string $phoneNumber The phone number to be deleted (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function removeFromBlacklistRequest($phone_number)
+    protected function removeFromBlacklistRequest($phoneNumber)
     {
-        // verify the required parameter 'phone_number' is set
-        if ($phone_number === null || (is_array($phone_number) && count($phone_number) === 0)) {
+        // verify the required parameter 'phoneNumber' is set
+        if ($phoneNumber === null || (is_array($phoneNumber) && count($phoneNumber) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $phone_number when calling removeFromBlacklist'
+                'Missing the required parameter $phoneNumber when calling removeFromBlacklist'
             );
         }
 
@@ -811,10 +811,10 @@ class BlacklistApi
 
 
         // path params
-        if ($phone_number !== null) {
+        if ($phoneNumber !== null) {
             $resourcePath = str_replace(
                 '{' . 'phone_number' . '}',
-                ObjectSerializer::toPathValue($phone_number),
+                ObjectSerializer::toPathValue($phoneNumber),
                 $resourcePath
             );
         }

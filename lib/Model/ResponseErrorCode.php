@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,15 +27,15 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
-use \OpenAPI\Client\ObjectSerializer;
+namespace Messente\Phonebook\Model;
+use \Messente\Phonebook\ObjectSerializer;
 
 /**
  * ResponseErrorCode Class Doc Comment
  *
  * @category Class
  * @description Matches the following ResponseErrorTitles. This field is a constant. * 201 - Invalid data * 202 - Unauthorized * 203 - Missing resource * 204 - Conflict * 205 - General error
- * @package  OpenAPI\Client
+ * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
