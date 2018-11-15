@@ -63,8 +63,6 @@ $apiInstance = new Messente\Phonebook\Api\BlacklistApi(
     new GuzzleHttp\Client(),
     $config
 );
-$numberToBlacklist = new \Messente\Phonebook\Model\NumberToBlacklist();
-$numberToBlacklist->setPhoneNumber('+37255555555');
 
 try {
     $response = $apiInstance->fetchBlacklist();
@@ -74,7 +72,7 @@ try {
 }
 
 // try {
-//     $apiInstance->addToBlacklist($numberToBlacklist);
+//     $apiInstance->addToBlacklist(['phoneNumber' => '+37255555555']);
 // } catch (Exception $e) {
 //     echo 'Exception when calling addToBlacklist: ', $e->getMessage(), PHP_EOL;
 // }
