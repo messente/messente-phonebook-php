@@ -51,16 +51,19 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+use Messente\Phonebook\Configuration;
+use Messente\Phonebook\Api\BlacklistApi;
+use GuzzleHttp\Client;
 
 // Configure HTTP basic authorization: basicAuth
-$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
+$config = Configuration::getDefaultConfiguration()
     ->setUsername('YOUR_MESSENTE_API_USERNAME')
     ->setPassword('YOUR_MESSENTE_API_PASSWORD');
 
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+$apiInstance = new BlacklistApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
+    new Client(),
     $config
 );
 
@@ -82,6 +85,7 @@ try {
 // } catch (Exception $e) {
 //     echo 'Exception when calling removeFromBlacklist: ', $e->getMessage(), PHP_EOL;
 // }
+?>
 ```
 
 ## Documentation for API Endpoints
