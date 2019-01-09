@@ -81,6 +81,13 @@ try {
 // }
 
 // try {
+//     $apiInstance->isBlacklisted('+37255555555');
+// } catch (Exception $e) {
+//     echo 'Exception when calling isBlacklisted: ', $e->getMessage(), PHP_EOL;
+// }
+
+
+// try {
 //     $apiInstance->removeFromBlacklist('+37255555555');
 // } catch (Exception $e) {
 //     echo 'Exception when calling removeFromBlacklist: ', $e->getMessage(), PHP_EOL;
@@ -96,6 +103,7 @@ Class | Method | HTTP request |
 ------------ | ------------- | ------------- |
 *BlacklistApi* | [**addToBlacklist**](docs/Api/BlacklistApi.md#addtoblacklist) | **POST** /phonebook/blacklist |
 *BlacklistApi* | [**fetchBlacklist**](docs/Api/BlacklistApi.md#fetchblacklist) | **GET** /phonebook/blacklist |
+*BlacklistApi* | [**isBlacklisted**](docs/Api/BlacklistApi.md#isBlacklisted) | **GET** /phonebook/blacklist/{phone_number} |
 *BlacklistApi* | [**removeFromBlacklist**](docs/Api/BlacklistApi.md#removefromblacklist) | **DELETE** /phonebook/blacklist/{phone_number} |
 
 

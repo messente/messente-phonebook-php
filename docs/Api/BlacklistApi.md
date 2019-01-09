@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addToBlacklist**](BlacklistApi.md#addToBlacklist) | **POST** /phonebook/blacklist | 
 [**fetchBlacklist**](BlacklistApi.md#fetchBlacklist) | **GET** /phonebook/blacklist | 
+[**isBlacklisted**](BlacklistApi.md#isBlacklisted) | **GET** /phonebook/blacklist/{phone_number} | 
 [**removeFromBlacklist**](BlacklistApi.md#removeFromBlacklist) | **DELETE** /phonebook/blacklist/{phone_number} | 
 
 
@@ -114,6 +115,60 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **isBlacklisted**
+> isBlacklisted($phoneNumber)
+
+
+
+Checks if a phone number is blacklisted.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: basicAuth
+$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$phoneNumber = 'phoneNumber_example'; // string | A phone number
+
+try {
+    $apiInstance->isBlacklisted($phoneNumber);
+} catch (Exception $e) {
+    echo 'Exception when calling BlacklistApi->isBlacklisted: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **phoneNumber** | **string**| A phone number |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **removeFromBlacklist**
 > removeFromBlacklist($phoneNumber)
 
@@ -137,7 +192,7 @@ $apiInstance = new Messente\Phonebook\Api\BlacklistApi(
     new GuzzleHttp\Client(),
     $config
 );
-$phoneNumber = 'phoneNumber_example'; // string | The phone number to be deleted
+$phoneNumber = 'phoneNumber_example'; // string | A phone number
 
 try {
     $apiInstance->removeFromBlacklist($phoneNumber);
@@ -151,7 +206,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phoneNumber** | **string**| The phone number to be deleted |
+ **phoneNumber** | **string**| A phone number |
 
 ### Return type
 
