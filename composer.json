@@ -1,7 +1,7 @@
 {
     "name": "messente/messente-phonebook-php",
-    "version": "0.1.0",
-    "description": "",
+    "version": "0.2.0",
+    "description": "RESTful API for Messente phonebook",
     "keywords": [
         "openapitools",
         "openapi-generator",
