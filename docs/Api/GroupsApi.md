@@ -1,21 +1,22 @@
-# Messente\Phonebook\BlacklistApi
+# Messente\Phonebook\GroupsApi
 
 All URIs are relative to *https://api.messente.com/v1/phonebook*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addToBlacklist**](BlacklistApi.md#addToBlacklist) | **POST** /blacklist | 
-[**fetchBlacklist**](BlacklistApi.md#fetchBlacklist) | **GET** /blacklist | 
-[**isBlacklisted**](BlacklistApi.md#isBlacklisted) | **GET** /blacklist/{phone} | 
-[**removeFromBlacklist**](BlacklistApi.md#removeFromBlacklist) | **DELETE** /blacklist/{phone} | 
+[**createGroup**](GroupsApi.md#createGroup) | **POST** /groups | 
+[**deleteGroup**](GroupsApi.md#deleteGroup) | **DELETE** /groups/{groupId} | 
+[**fetchGroup**](GroupsApi.md#fetchGroup) | **GET** /groups/{groupId} | 
+[**fetchGroups**](GroupsApi.md#fetchGroups) | **GET** /groups | 
+[**updateGroup**](GroupsApi.md#updateGroup) | **PUT** /groups/{groupId} | 
 
 
-# **addToBlacklist**
-> addToBlacklist($numberToBlacklist)
+# **createGroup**
+> \Messente\Phonebook\Model\GroupEnvelope createGroup($groupName)
 
 
 
-Adds a phone number to the blacklist.
+Creates a new group with the provided name.
 
 ### Example
 ```php
@@ -27,18 +28,19 @@ $config = Messente\Phonebook\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+$apiInstance = new Messente\Phonebook\Api\GroupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$numberToBlacklist = new \Messente\Phonebook\Model\NumberToBlacklist(); // \Messente\Phonebook\Model\NumberToBlacklist | Phone number to be blacklisted
+$groupName = new \Messente\Phonebook\Model\GroupName(); // \Messente\Phonebook\Model\GroupName | 
 
 try {
-    $apiInstance->addToBlacklist($numberToBlacklist);
+    $result = $apiInstance->createGroup($groupName);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlacklistApi->addToBlacklist: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupsApi->createGroup: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -47,11 +49,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **numberToBlacklist** | [**\Messente\Phonebook\Model\NumberToBlacklist**](../Model/NumberToBlacklist.md)| Phone number to be blacklisted |
+ **groupName** | [**\Messente\Phonebook\Model\GroupName**](../Model/GroupName.md)|  |
 
 ### Return type
 
-void (empty response body)
+[**\Messente\Phonebook\Model\GroupEnvelope**](../Model/GroupEnvelope.md)
 
 ### Authorization
 
@@ -64,12 +66,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **fetchBlacklist**
-> \Messente\Phonebook\Model\FetchBlacklistSuccess fetchBlacklist()
+# **deleteGroup**
+> deleteGroup($groupId)
 
 
 
-Returns all blacklisted phone numbers.
+Deletes a group.
 
 ### Example
 ```php
@@ -81,7 +83,116 @@ $config = Messente\Phonebook\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+$apiInstance = new Messente\Phonebook\Api\GroupsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$groupId = 'groupId_example'; // string | String in uuid format.
+
+try {
+    $apiInstance->deleteGroup($groupId);
+} catch (Exception $e) {
+    echo 'Exception when calling GroupsApi->deleteGroup: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **string**| String in uuid format. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **fetchGroup**
+> \Messente\Phonebook\Model\GroupEnvelope fetchGroup($groupId)
+
+
+
+Lists a group.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: basicAuth
+$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+$apiInstance = new Messente\Phonebook\Api\GroupsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$groupId = 'groupId_example'; // string | String in uuid format.
+
+try {
+    $result = $apiInstance->fetchGroup($groupId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GroupsApi->fetchGroup: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **groupId** | **string**| String in uuid format. |
+
+### Return type
+
+[**\Messente\Phonebook\Model\GroupEnvelope**](../Model/GroupEnvelope.md)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **fetchGroups**
+> \Messente\Phonebook\Model\GroupListEnvelope fetchGroups()
+
+
+
+Returns all groups.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: basicAuth
+$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+$apiInstance = new Messente\Phonebook\Api\GroupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -89,10 +200,10 @@ $apiInstance = new Messente\Phonebook\Api\BlacklistApi(
 );
 
 try {
-    $result = $apiInstance->fetchBlacklist();
+    $result = $apiInstance->fetchGroups();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlacklistApi->fetchBlacklist: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupsApi->fetchGroups: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -102,7 +213,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Messente\Phonebook\Model\FetchBlacklistSuccess**](../Model/FetchBlacklistSuccess.md)
+[**\Messente\Phonebook\Model\GroupListEnvelope**](../Model/GroupListEnvelope.md)
 
 ### Authorization
 
@@ -115,66 +226,12 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **isBlacklisted**
-> isBlacklisted($phone)
+# **updateGroup**
+> \Messente\Phonebook\Model\GroupEnvelope updateGroup($groupId, $groupName)
 
 
 
-Checks if a phone number is blacklisted.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure HTTP basic authorization: basicAuth
-$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$phone = 'phone_example'; // string | A phone number
-
-try {
-    $apiInstance->isBlacklisted($phone);
-} catch (Exception $e) {
-    echo 'Exception when calling BlacklistApi->isBlacklisted: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **phone** | **string**| A phone number |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basicAuth](../../README.md#basicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **removeFromBlacklist**
-> removeFromBlacklist($phone)
-
-
-
-Removes a phone number from the blacklist.
+Updates a group with the provided name.
 
 ### Example
 ```php
@@ -186,18 +243,20 @@ $config = Messente\Phonebook\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+$apiInstance = new Messente\Phonebook\Api\GroupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$phone = 'phone_example'; // string | A phone number
+$groupId = 'groupId_example'; // string | String in uuid format.
+$groupName = new \Messente\Phonebook\Model\GroupName(); // \Messente\Phonebook\Model\GroupName | 
 
 try {
-    $apiInstance->removeFromBlacklist($phone);
+    $result = $apiInstance->updateGroup($groupId, $groupName);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BlacklistApi->removeFromBlacklist: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GroupsApi->updateGroup: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -206,11 +265,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone** | **string**| A phone number |
+ **groupId** | **string**| String in uuid format. |
+ **groupName** | [**\Messente\Phonebook\Model\GroupName**](../Model/GroupName.md)|  |
 
 ### Return type
 
-void (empty response body)
+[**\Messente\Phonebook\Model\GroupEnvelope**](../Model/GroupEnvelope.md)
 
 ### Authorization
 
@@ -218,7 +278,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

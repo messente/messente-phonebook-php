@@ -1,6 +1,6 @@
 <?php
 /**
- * FetchBlacklistSuccess
+ * GroupResponseFields
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * FetchBlacklistSuccess Class Doc Comment
+ * GroupResponseFields Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
+class GroupResponseFields implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FetchBlacklistSuccess';
+    protected static $openAPIModelName = 'GroupResponseFields';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phoneNumbers' => 'string[]'
+        'id' => 'string',
+        'name' => 'string',
+        'createdOn' => 'string',
+        'contactsCount' => 'int'
     ];
 
     /**
@@ -66,7 +69,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phoneNumbers' => null
+        'id' => null,
+        'name' => null,
+        'createdOn' => null,
+        'contactsCount' => 'int32'
     ];
 
     /**
@@ -96,7 +102,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phoneNumbers' => 'phoneNumbers'
+        'id' => 'id',
+        'name' => 'name',
+        'createdOn' => 'createdOn',
+        'contactsCount' => 'contactsCount'
     ];
 
     /**
@@ -105,7 +114,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phoneNumbers' => 'setPhoneNumbers'
+        'id' => 'setId',
+        'name' => 'setName',
+        'createdOn' => 'setCreatedOn',
+        'contactsCount' => 'setContactsCount'
     ];
 
     /**
@@ -114,7 +126,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phoneNumbers' => 'getPhoneNumbers'
+        'id' => 'getId',
+        'name' => 'getName',
+        'createdOn' => 'getCreatedOn',
+        'contactsCount' => 'getContactsCount'
     ];
 
     /**
@@ -177,7 +192,10 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phoneNumbers'] = isset($data['phoneNumbers']) ? $data['phoneNumbers'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['createdOn'] = isset($data['createdOn']) ? $data['createdOn'] : null;
+        $this->container['contactsCount'] = isset($data['contactsCount']) ? $data['contactsCount'] : null;
     }
 
     /**
@@ -189,6 +207,15 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['contactsCount'] === null) {
+            $invalidProperties[] = "'contactsCount' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -205,25 +232,97 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets phoneNumbers
+     * Gets id
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getPhoneNumbers()
+    public function getId()
     {
-        return $this->container['phoneNumbers'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets phoneNumbers
+     * Sets id
      *
-     * @param string[]|null $phoneNumbers phoneNumbers
+     * @param string $id Id string in uuid format
      *
      * @return $this
      */
-    public function setPhoneNumbers($phoneNumbers)
+    public function setId($id)
     {
-        $this->container['phoneNumbers'] = $phoneNumbers;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdOn
+     *
+     * @return string|null
+     */
+    public function getCreatedOn()
+    {
+        return $this->container['createdOn'];
+    }
+
+    /**
+     * Sets createdOn
+     *
+     * @param string|null $createdOn format %Y-%m-%dT%H:%M:%S.%fZ
+     *
+     * @return $this
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->container['createdOn'] = $createdOn;
+
+        return $this;
+    }
+
+    /**
+     * Gets contactsCount
+     *
+     * @return int
+     */
+    public function getContactsCount()
+    {
+        return $this->container['contactsCount'];
+    }
+
+    /**
+     * Sets contactsCount
+     *
+     * @param int $contactsCount contactsCount
+     *
+     * @return $this
+     */
+    public function setContactsCount($contactsCount)
+    {
+        $this->container['contactsCount'] = $contactsCount;
 
         return $this;
     }

@@ -97,21 +97,43 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.messente.com/v1*
+All URIs are relative to *https://api.messente.com/v1/phonebook*
 
-Class | Method | HTTP request |
------------- | ------------- | ------------- |
-*BlacklistApi* | [**addToBlacklist**](docs/Api/BlacklistApi.md#addtoblacklist) | **POST** /phonebook/blacklist |
-*BlacklistApi* | [**fetchBlacklist**](docs/Api/BlacklistApi.md#fetchblacklist) | **GET** /phonebook/blacklist |
-*BlacklistApi* | [**isBlacklisted**](docs/Api/BlacklistApi.md#isBlacklisted) | **GET** /phonebook/blacklist/{phone_number} |
-*BlacklistApi* | [**removeFromBlacklist**](docs/Api/BlacklistApi.md#removefromblacklist) | **DELETE** /phonebook/blacklist/{phone_number} |
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*BlacklistApi* | [**addToBlacklist**](docs/Api/BlacklistApi.md#addtoblacklist) | **POST** /blacklist | 
+*BlacklistApi* | [**fetchBlacklist**](docs/Api/BlacklistApi.md#fetchblacklist) | **GET** /blacklist | 
+*BlacklistApi* | [**isBlacklisted**](docs/Api/BlacklistApi.md#isblacklisted) | **GET** /blacklist/{phone} | 
+*BlacklistApi* | [**removeFromBlacklist**](docs/Api/BlacklistApi.md#removefromblacklist) | **DELETE** /blacklist/{phone} | 
+*ContactsApi* | [**addContactToGroup**](docs/Api/ContactsApi.md#addcontacttogroup) | **POST** /groups/{groupId}/contacts/{phone} | 
+*ContactsApi* | [**createContact**](docs/Api/ContactsApi.md#createcontact) | **POST** /contacts | 
+*ContactsApi* | [**deleteContact**](docs/Api/ContactsApi.md#deletecontact) | **DELETE** /contacts/{phone} | 
+*ContactsApi* | [**fetchContact**](docs/Api/ContactsApi.md#fetchcontact) | **GET** /contacts/{phone} | 
+*ContactsApi* | [**fetchContactGroups**](docs/Api/ContactsApi.md#fetchcontactgroups) | **GET** /contacts/{phone}/groups | 
+*ContactsApi* | [**fetchContacts**](docs/Api/ContactsApi.md#fetchcontacts) | **GET** /contacts | 
+*ContactsApi* | [**removeContactFromGroup**](docs/Api/ContactsApi.md#removecontactfromgroup) | **DELETE** /groups/{groupId}/contacts/{phone} | 
+*ContactsApi* | [**updateContact**](docs/Api/ContactsApi.md#updatecontact) | **PATCH** /contacts/{phone} | 
+*GroupsApi* | [**createGroup**](docs/Api/GroupsApi.md#creategroup) | **POST** /groups | 
+*GroupsApi* | [**deleteGroup**](docs/Api/GroupsApi.md#deletegroup) | **DELETE** /groups/{groupId} | 
+*GroupsApi* | [**fetchGroup**](docs/Api/GroupsApi.md#fetchgroup) | **GET** /groups/{groupId} | 
+*GroupsApi* | [**fetchGroups**](docs/Api/GroupsApi.md#fetchgroups) | **GET** /groups | 
+*GroupsApi* | [**updateGroup**](docs/Api/GroupsApi.md#updategroup) | **PUT** /groups/{groupId} | 
 
 
 ## Documentation For Models
 
+ - [ContactEnvelope](docs/Model/ContactEnvelope.md)
+ - [ContactFields](docs/Model/ContactFields.md)
+ - [ContactListEnvelope](docs/Model/ContactListEnvelope.md)
+ - [ContactUpdateFields](docs/Model/ContactUpdateFields.md)
+ - [EmptyObject](docs/Model/EmptyObject.md)
  - [ErrorItem](docs/Model/ErrorItem.md)
  - [ErrorResponse](docs/Model/ErrorResponse.md)
  - [FetchBlacklistSuccess](docs/Model/FetchBlacklistSuccess.md)
+ - [GroupEnvelope](docs/Model/GroupEnvelope.md)
+ - [GroupListEnvelope](docs/Model/GroupListEnvelope.md)
+ - [GroupName](docs/Model/GroupName.md)
+ - [GroupResponseFields](docs/Model/GroupResponseFields.md)
  - [NumberToBlacklist](docs/Model/NumberToBlacklist.md)
  - [ResponseErrorCode](docs/Model/ResponseErrorCode.md)
  - [ResponseErrorTitle](docs/Model/ResponseErrorTitle.md)

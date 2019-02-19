@@ -1,6 +1,6 @@
 <?php
 /**
- * FetchBlacklistSuccess
+ * EmptyObject
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * FetchBlacklistSuccess Class Doc Comment
+ * EmptyObject Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
+class EmptyObject implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FetchBlacklistSuccess';
+    protected static $openAPIModelName = 'EmptyObject';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phoneNumbers' => 'string[]'
+        
     ];
 
     /**
@@ -66,7 +66,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phoneNumbers' => null
+        
     ];
 
     /**
@@ -96,7 +96,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phoneNumbers' => 'phoneNumbers'
+        
     ];
 
     /**
@@ -105,7 +105,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phoneNumbers' => 'setPhoneNumbers'
+        
     ];
 
     /**
@@ -114,7 +114,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phoneNumbers' => 'getPhoneNumbers'
+        
     ];
 
     /**
@@ -177,7 +177,6 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phoneNumbers'] = isset($data['phoneNumbers']) ? $data['phoneNumbers'] : null;
     }
 
     /**
@@ -203,30 +202,6 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets phoneNumbers
-     *
-     * @return string[]|null
-     */
-    public function getPhoneNumbers()
-    {
-        return $this->container['phoneNumbers'];
-    }
-
-    /**
-     * Sets phoneNumbers
-     *
-     * @param string[]|null $phoneNumbers phoneNumbers
-     *
-     * @return $this
-     */
-    public function setPhoneNumbers($phoneNumbers)
-    {
-        $this->container['phoneNumbers'] = $phoneNumbers;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

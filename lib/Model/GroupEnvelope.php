@@ -1,6 +1,6 @@
 <?php
 /**
- * FetchBlacklistSuccess
+ * GroupEnvelope
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * FetchBlacklistSuccess Class Doc Comment
+ * GroupEnvelope Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
+class GroupEnvelope implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FetchBlacklistSuccess';
+    protected static $openAPIModelName = 'GroupEnvelope';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phoneNumbers' => 'string[]'
+        'group' => '\Messente\Phonebook\Model\GroupResponseFields'
     ];
 
     /**
@@ -66,7 +66,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phoneNumbers' => null
+        'group' => null
     ];
 
     /**
@@ -96,7 +96,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phoneNumbers' => 'phoneNumbers'
+        'group' => 'group'
     ];
 
     /**
@@ -105,7 +105,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phoneNumbers' => 'setPhoneNumbers'
+        'group' => 'setGroup'
     ];
 
     /**
@@ -114,7 +114,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phoneNumbers' => 'getPhoneNumbers'
+        'group' => 'getGroup'
     ];
 
     /**
@@ -177,7 +177,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phoneNumbers'] = isset($data['phoneNumbers']) ? $data['phoneNumbers'] : null;
+        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
     }
 
     /**
@@ -205,25 +205,25 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets phoneNumbers
+     * Gets group
      *
-     * @return string[]|null
+     * @return \Messente\Phonebook\Model\GroupResponseFields|null
      */
-    public function getPhoneNumbers()
+    public function getGroup()
     {
-        return $this->container['phoneNumbers'];
+        return $this->container['group'];
     }
 
     /**
-     * Sets phoneNumbers
+     * Sets group
      *
-     * @param string[]|null $phoneNumbers phoneNumbers
+     * @param \Messente\Phonebook\Model\GroupResponseFields|null $group group
      *
      * @return $this
      */
-    public function setPhoneNumbers($phoneNumbers)
+    public function setGroup($group)
     {
-        $this->container['phoneNumbers'] = $phoneNumbers;
+        $this->container['group'] = $group;
 
         return $this;
     }

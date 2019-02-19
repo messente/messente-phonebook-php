@@ -1,6 +1,6 @@
 <?php
 /**
- * FetchBlacklistSuccess
+ * GroupName
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * FetchBlacklistSuccess Class Doc Comment
+ * GroupName Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
+class GroupName implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FetchBlacklistSuccess';
+    protected static $openAPIModelName = 'GroupName';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phoneNumbers' => 'string[]'
+        'name' => 'string'
     ];
 
     /**
@@ -66,7 +66,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phoneNumbers' => null
+        'name' => null
     ];
 
     /**
@@ -96,7 +96,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phoneNumbers' => 'phoneNumbers'
+        'name' => 'name'
     ];
 
     /**
@@ -105,7 +105,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phoneNumbers' => 'setPhoneNumbers'
+        'name' => 'setName'
     ];
 
     /**
@@ -114,7 +114,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phoneNumbers' => 'getPhoneNumbers'
+        'name' => 'getName'
     ];
 
     /**
@@ -177,7 +177,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phoneNumbers'] = isset($data['phoneNumbers']) ? $data['phoneNumbers'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
     }
 
     /**
@@ -188,6 +188,13 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ((mb_strlen($this->container['name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
+        }
 
         return $invalidProperties;
     }
@@ -205,25 +212,30 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets phoneNumbers
+     * Gets name
      *
-     * @return string[]|null
+     * @return string
      */
-    public function getPhoneNumbers()
+    public function getName()
     {
-        return $this->container['phoneNumbers'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets phoneNumbers
+     * Sets name
      *
-     * @param string[]|null $phoneNumbers phoneNumbers
+     * @param string $name name
      *
      * @return $this
      */
-    public function setPhoneNumbers($phoneNumbers)
+    public function setName($name)
     {
-        $this->container['phoneNumbers'] = $phoneNumbers;
+
+        if ((mb_strlen($name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling GroupName., must be bigger than or equal to 1.');
+        }
+
+        $this->container['name'] = $name;
 
         return $this;
     }

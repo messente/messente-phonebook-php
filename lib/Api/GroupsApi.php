@@ -1,6 +1,6 @@
 <?php
 /**
- * BlacklistApi
+ * GroupsApi
  * PHP version 5
  *
  * @category Class
@@ -40,14 +40,14 @@ use Messente\Phonebook\HeaderSelector;
 use Messente\Phonebook\ObjectSerializer;
 
 /**
- * BlacklistApi Class Doc Comment
+ * GroupsApi Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BlacklistApi
+class GroupsApi
 {
     /**
      * @var ClientInterface
@@ -88,31 +88,32 @@ class BlacklistApi
     }
 
     /**
-     * Operation addToBlacklist
+     * Operation createGroup
      *
-     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName groupName (required)
      *
      * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
      */
-    public function addToBlacklist($numberToBlacklist)
+    public function createGroup($groupName)
     {
-        $this->addToBlacklistWithHttpInfo($numberToBlacklist);
+        list($response) = $this->createGroupWithHttpInfo($groupName);
+        return $response;
     }
 
     /**
-     * Operation addToBlacklistWithHttpInfo
+     * Operation createGroupWithHttpInfo
      *
-     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
      *
      * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addToBlacklistWithHttpInfo($numberToBlacklist)
+    public function createGroupWithHttpInfo($groupName)
     {
-        $request = $this->addToBlacklistRequest($numberToBlacklist);
+        $request = $this->createGroupRequest($groupName);
 
         try {
             $options = $this->createHttpClientOption();
@@ -142,10 +143,82 @@ class BlacklistApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\Messente\Phonebook\Model\GroupEnvelope' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\GroupEnvelope', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\GroupEnvelope',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -155,14 +228,6 @@ class BlacklistApi
                     $e->setResponseObject($data);
                     break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Messente\Phonebook\Model\ErrorResponse',
@@ -184,18 +249,18 @@ class BlacklistApi
     }
 
     /**
-     * Operation addToBlacklistAsync
+     * Operation createGroupAsync
      *
      * 
      *
-     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsync($numberToBlacklist)
+    public function createGroupAsync($groupName)
     {
-        return $this->addToBlacklistAsyncWithHttpInfo($numberToBlacklist)
+        return $this->createGroupAsyncWithHttpInfo($groupName)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -204,25 +269,36 @@ class BlacklistApi
     }
 
     /**
-     * Operation addToBlacklistAsyncWithHttpInfo
+     * Operation createGroupAsyncWithHttpInfo
      *
      * 
      *
-     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addToBlacklistAsyncWithHttpInfo($numberToBlacklist)
+    public function createGroupAsyncWithHttpInfo($groupName)
     {
-        $returnType = '';
-        $request = $this->addToBlacklistRequest($numberToBlacklist);
+        $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+        $request = $this->createGroupRequest($groupName);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -242,23 +318,23 @@ class BlacklistApi
     }
 
     /**
-     * Create request for operation 'addToBlacklist'
+     * Create request for operation 'createGroup'
      *
-     * @param  \Messente\Phonebook\Model\NumberToBlacklist $numberToBlacklist Phone number to be blacklisted (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addToBlacklistRequest($numberToBlacklist)
+    protected function createGroupRequest($groupName)
     {
-        // verify the required parameter 'numberToBlacklist' is set
-        if ($numberToBlacklist === null || (is_array($numberToBlacklist) && count($numberToBlacklist) === 0)) {
+        // verify the required parameter 'groupName' is set
+        if ($groupName === null || (is_array($groupName) && count($groupName) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $numberToBlacklist when calling addToBlacklist'
+                'Missing the required parameter $groupName when calling createGroup'
             );
         }
 
-        $resourcePath = '/blacklist';
+        $resourcePath = '/groups';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -269,8 +345,8 @@ class BlacklistApi
 
         // body params
         $_tempBody = null;
-        if (isset($numberToBlacklist)) {
-            $_tempBody = $numberToBlacklist;
+        if (isset($groupName)) {
+            $_tempBody = $groupName;
         }
 
         if ($multipart) {
@@ -339,324 +415,31 @@ class BlacklistApi
     }
 
     /**
-     * Operation fetchBlacklist
+     * Operation deleteGroup
      *
-     *
-     * @throws \Messente\Phonebook\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Messente\Phonebook\Model\FetchBlacklistSuccess|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
-     */
-    public function fetchBlacklist()
-    {
-        list($response) = $this->fetchBlacklistWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Operation fetchBlacklistWithHttpInfo
-     *
-     *
-     * @throws \Messente\Phonebook\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Messente\Phonebook\Model\FetchBlacklistSuccess|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function fetchBlacklistWithHttpInfo()
-    {
-        $request = $this->fetchBlacklistRequest();
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\Messente\Phonebook\Model\FetchBlacklistSuccess' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\FetchBlacklistSuccess', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                default:
-                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Messente\Phonebook\Model\FetchBlacklistSuccess';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\FetchBlacklistSuccess',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation fetchBlacklistAsync
-     *
-     * 
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function fetchBlacklistAsync()
-    {
-        return $this->fetchBlacklistAsyncWithHttpInfo()
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation fetchBlacklistAsyncWithHttpInfo
-     *
-     * 
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function fetchBlacklistAsyncWithHttpInfo()
-    {
-        $returnType = '\Messente\Phonebook\Model\FetchBlacklistSuccess';
-        $request = $this->fetchBlacklistRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'fetchBlacklist'
-     *
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function fetchBlacklistRequest()
-    {
-
-        $resourcePath = '/blacklist';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
-            } else {
-                $httpBody = $_tempBody;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation isBlacklisted
-     *
-     * @param  string $phone A phone number (required)
+     * @param  string $groupId String in uuid format. (required)
      *
      * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function isBlacklisted($phone)
+    public function deleteGroup($groupId)
     {
-        $this->isBlacklistedWithHttpInfo($phone);
+        $this->deleteGroupWithHttpInfo($groupId);
     }
 
     /**
-     * Operation isBlacklistedWithHttpInfo
+     * Operation deleteGroupWithHttpInfo
      *
-     * @param  string $phone A phone number (required)
+     * @param  string $groupId String in uuid format. (required)
      *
      * @throws \Messente\Phonebook\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function isBlacklistedWithHttpInfo($phone)
+    public function deleteGroupWithHttpInfo($groupId)
     {
-        $request = $this->isBlacklistedRequest($phone);
+        $request = $this->deleteGroupRequest($groupId);
 
         try {
             $options = $this->createHttpClientOption();
@@ -690,262 +473,6 @@ class BlacklistApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation isBlacklistedAsync
-     *
-     * 
-     *
-     * @param  string $phone A phone number (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function isBlacklistedAsync($phone)
-    {
-        return $this->isBlacklistedAsyncWithHttpInfo($phone)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation isBlacklistedAsyncWithHttpInfo
-     *
-     * 
-     *
-     * @param  string $phone A phone number (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function isBlacklistedAsyncWithHttpInfo($phone)
-    {
-        $returnType = '';
-        $request = $this->isBlacklistedRequest($phone);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'isBlacklisted'
-     *
-     * @param  string $phone A phone number (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function isBlacklistedRequest($phone)
-    {
-        // verify the required parameter 'phone' is set
-        if ($phone === null || (is_array($phone) && count($phone) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $phone when calling isBlacklisted'
-            );
-        }
-
-        $resourcePath = '/blacklist/{phone}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($phone !== null) {
-            $resourcePath = str_replace(
-                '{' . 'phone' . '}',
-                ObjectSerializer::toPathValue($phone),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
-            } else {
-                $httpBody = $_tempBody;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires HTTP basic authentication
-        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
-            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation removeFromBlacklist
-     *
-     * @param  string $phone A phone number (required)
-     *
-     * @throws \Messente\Phonebook\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function removeFromBlacklist($phone)
-    {
-        $this->removeFromBlacklistWithHttpInfo($phone);
-    }
-
-    /**
-     * Operation removeFromBlacklistWithHttpInfo
-     *
-     * @param  string $phone A phone number (required)
-     *
-     * @throws \Messente\Phonebook\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function removeFromBlacklistWithHttpInfo($phone)
-    {
-        $request = $this->removeFromBlacklistRequest($phone);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Messente\Phonebook\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -976,18 +503,18 @@ class BlacklistApi
     }
 
     /**
-     * Operation removeFromBlacklistAsync
+     * Operation deleteGroupAsync
      *
      * 
      *
-     * @param  string $phone A phone number (required)
+     * @param  string $groupId String in uuid format. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeFromBlacklistAsync($phone)
+    public function deleteGroupAsync($groupId)
     {
-        return $this->removeFromBlacklistAsyncWithHttpInfo($phone)
+        return $this->deleteGroupAsyncWithHttpInfo($groupId)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -996,19 +523,19 @@ class BlacklistApi
     }
 
     /**
-     * Operation removeFromBlacklistAsyncWithHttpInfo
+     * Operation deleteGroupAsyncWithHttpInfo
      *
      * 
      *
-     * @param  string $phone A phone number (required)
+     * @param  string $groupId String in uuid format. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeFromBlacklistAsyncWithHttpInfo($phone)
+    public function deleteGroupAsyncWithHttpInfo($groupId)
     {
         $returnType = '';
-        $request = $this->removeFromBlacklistRequest($phone);
+        $request = $this->deleteGroupRequest($groupId);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1034,23 +561,23 @@ class BlacklistApi
     }
 
     /**
-     * Create request for operation 'removeFromBlacklist'
+     * Create request for operation 'deleteGroup'
      *
-     * @param  string $phone A phone number (required)
+     * @param  string $groupId String in uuid format. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function removeFromBlacklistRequest($phone)
+    protected function deleteGroupRequest($groupId)
     {
-        // verify the required parameter 'phone' is set
-        if ($phone === null || (is_array($phone) && count($phone) === 0)) {
+        // verify the required parameter 'groupId' is set
+        if ($groupId === null || (is_array($groupId) && count($groupId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $phone when calling removeFromBlacklist'
+                'Missing the required parameter $groupId when calling deleteGroup'
             );
         }
 
-        $resourcePath = '/blacklist/{phone}';
+        $resourcePath = '/groups/{groupId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1059,10 +586,10 @@ class BlacklistApi
 
 
         // path params
-        if ($phone !== null) {
+        if ($groupId !== null) {
             $resourcePath = str_replace(
-                '{' . 'phone' . '}',
-                ObjectSerializer::toPathValue($phone),
+                '{' . 'groupId' . '}',
+                ObjectSerializer::toPathValue($groupId),
                 $resourcePath
             );
         }
@@ -1129,6 +656,977 @@ class BlacklistApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation fetchGroup
+     *
+     * @param  string $groupId String in uuid format. (required)
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
+     */
+    public function fetchGroup($groupId)
+    {
+        list($response) = $this->fetchGroupWithHttpInfo($groupId);
+        return $response;
+    }
+
+    /**
+     * Operation fetchGroupWithHttpInfo
+     *
+     * @param  string $groupId String in uuid format. (required)
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fetchGroupWithHttpInfo($groupId)
+    {
+        $request = $this->fetchGroupRequest($groupId);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\Messente\Phonebook\Model\GroupEnvelope' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\GroupEnvelope', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\GroupEnvelope',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation fetchGroupAsync
+     *
+     * 
+     *
+     * @param  string $groupId String in uuid format. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fetchGroupAsync($groupId)
+    {
+        return $this->fetchGroupAsyncWithHttpInfo($groupId)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation fetchGroupAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  string $groupId String in uuid format. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fetchGroupAsyncWithHttpInfo($groupId)
+    {
+        $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+        $request = $this->fetchGroupRequest($groupId);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'fetchGroup'
+     *
+     * @param  string $groupId String in uuid format. (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function fetchGroupRequest($groupId)
+    {
+        // verify the required parameter 'groupId' is set
+        if ($groupId === null || (is_array($groupId) && count($groupId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $groupId when calling fetchGroup'
+            );
+        }
+
+        $resourcePath = '/groups/{groupId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($groupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'groupId' . '}',
+                ObjectSerializer::toPathValue($groupId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation fetchGroups
+     *
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Messente\Phonebook\Model\GroupListEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
+     */
+    public function fetchGroups()
+    {
+        list($response) = $this->fetchGroupsWithHttpInfo();
+        return $response;
+    }
+
+    /**
+     * Operation fetchGroupsWithHttpInfo
+     *
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Messente\Phonebook\Model\GroupListEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fetchGroupsWithHttpInfo()
+    {
+        $request = $this->fetchGroupsRequest();
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\Messente\Phonebook\Model\GroupListEnvelope' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\GroupListEnvelope', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Messente\Phonebook\Model\GroupListEnvelope';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\GroupListEnvelope',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation fetchGroupsAsync
+     *
+     * 
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fetchGroupsAsync()
+    {
+        return $this->fetchGroupsAsyncWithHttpInfo()
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation fetchGroupsAsyncWithHttpInfo
+     *
+     * 
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fetchGroupsAsyncWithHttpInfo()
+    {
+        $returnType = '\Messente\Phonebook\Model\GroupListEnvelope';
+        $request = $this->fetchGroupsRequest();
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'fetchGroups'
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function fetchGroupsRequest()
+    {
+
+        $resourcePath = '/groups';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateGroup
+     *
+     * @param  string $groupId String in uuid format. (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName groupName (required)
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse
+     */
+    public function updateGroup($groupId, $groupName)
+    {
+        list($response) = $this->updateGroupWithHttpInfo($groupId, $groupName);
+        return $response;
+    }
+
+    /**
+     * Operation updateGroupWithHttpInfo
+     *
+     * @param  string $groupId String in uuid format. (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
+     *
+     * @throws \Messente\Phonebook\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Messente\Phonebook\Model\GroupEnvelope|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse|\Messente\Phonebook\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateGroupWithHttpInfo($groupId, $groupName)
+    {
+        $request = $this->updateGroupRequest($groupId, $groupName);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\Messente\Phonebook\Model\GroupEnvelope' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\GroupEnvelope', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                default:
+                    if ('\Messente\Phonebook\Model\ErrorResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Messente\Phonebook\Model\ErrorResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\GroupEnvelope',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Messente\Phonebook\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateGroupAsync
+     *
+     * 
+     *
+     * @param  string $groupId String in uuid format. (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateGroupAsync($groupId, $groupName)
+    {
+        return $this->updateGroupAsyncWithHttpInfo($groupId, $groupName)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateGroupAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  string $groupId String in uuid format. (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateGroupAsyncWithHttpInfo($groupId, $groupName)
+    {
+        $returnType = '\Messente\Phonebook\Model\GroupEnvelope';
+        $request = $this->updateGroupRequest($groupId, $groupName);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateGroup'
+     *
+     * @param  string $groupId String in uuid format. (required)
+     * @param  \Messente\Phonebook\Model\GroupName $groupName (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function updateGroupRequest($groupId, $groupName)
+    {
+        // verify the required parameter 'groupId' is set
+        if ($groupId === null || (is_array($groupId) && count($groupId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $groupId when calling updateGroup'
+            );
+        }
+        // verify the required parameter 'groupName' is set
+        if ($groupName === null || (is_array($groupName) && count($groupName) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $groupName when calling updateGroup'
+            );
+        }
+
+        $resourcePath = '/groups/{groupId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($groupId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'groupId' . '}',
+                ObjectSerializer::toPathValue($groupId),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($groupName)) {
+            $_tempBody = $groupName;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires HTTP basic authentication
+        if ($this->config->getUsername() !== null || $this->config->getPassword() !== null) {
+            $headers['Authorization'] = 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

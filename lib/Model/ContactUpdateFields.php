@@ -1,6 +1,6 @@
 <?php
 /**
- * ErrorItem
+ * ContactUpdateFields
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * ErrorItem Class Doc Comment
+ * ContactUpdateFields Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ErrorItem implements ModelInterface, ArrayAccess
+class ContactUpdateFields implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ErrorItem';
+    protected static $openAPIModelName = 'ContactUpdateFields';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'title' => '\Messente\Phonebook\Model\ResponseErrorTitle',
-        'detail' => 'string',
-        'code' => '\Messente\Phonebook\Model\ResponseErrorCode'
+        'email' => 'string',
+        'firstName' => 'string',
+        'lastName' => 'string',
+        'company' => 'int',
+        'title' => 'string',
+        'custom' => 'string',
+        'custom2' => 'string',
+        'custom3' => 'string',
+        'custom4' => 'string'
     ];
 
     /**
@@ -68,9 +74,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'email' => null,
+        'firstName' => null,
+        'lastName' => null,
+        'company' => 'int32',
         'title' => null,
-        'detail' => null,
-        'code' => null
+        'custom' => null,
+        'custom2' => null,
+        'custom3' => null,
+        'custom4' => null
     ];
 
     /**
@@ -100,9 +112,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'email' => 'email',
+        'firstName' => 'firstName',
+        'lastName' => 'lastName',
+        'company' => 'company',
         'title' => 'title',
-        'detail' => 'detail',
-        'code' => 'code'
+        'custom' => 'custom',
+        'custom2' => 'custom2',
+        'custom3' => 'custom3',
+        'custom4' => 'custom4'
     ];
 
     /**
@@ -111,9 +129,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'email' => 'setEmail',
+        'firstName' => 'setFirstName',
+        'lastName' => 'setLastName',
+        'company' => 'setCompany',
         'title' => 'setTitle',
-        'detail' => 'setDetail',
-        'code' => 'setCode'
+        'custom' => 'setCustom',
+        'custom2' => 'setCustom2',
+        'custom3' => 'setCustom3',
+        'custom4' => 'setCustom4'
     ];
 
     /**
@@ -122,9 +146,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'email' => 'getEmail',
+        'firstName' => 'getFirstName',
+        'lastName' => 'getLastName',
+        'company' => 'getCompany',
         'title' => 'getTitle',
-        'detail' => 'getDetail',
-        'code' => 'getCode'
+        'custom' => 'getCustom',
+        'custom2' => 'getCustom2',
+        'custom3' => 'getCustom3',
+        'custom4' => 'getCustom4'
     ];
 
     /**
@@ -187,9 +217,15 @@ class ErrorItem implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['firstName'] = isset($data['firstName']) ? $data['firstName'] : null;
+        $this->container['lastName'] = isset($data['lastName']) ? $data['lastName'] : null;
+        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
         $this->container['title'] = isset($data['title']) ? $data['title'] : null;
-        $this->container['detail'] = isset($data['detail']) ? $data['detail'] : null;
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
+        $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['custom2'] = isset($data['custom2']) ? $data['custom2'] : null;
+        $this->container['custom3'] = isset($data['custom3']) ? $data['custom3'] : null;
+        $this->container['custom4'] = isset($data['custom4']) ? $data['custom4'] : null;
     }
 
     /**
@@ -201,15 +237,6 @@ class ErrorItem implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ($this->container['detail'] === null) {
-            $invalidProperties[] = "'detail' can't be null";
-        }
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -226,9 +253,105 @@ class ErrorItem implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email email
+     *
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets firstName
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->container['firstName'];
+    }
+
+    /**
+     * Sets firstName
+     *
+     * @param string|null $firstName firstName
+     *
+     * @return $this
+     */
+    public function setFirstName($firstName)
+    {
+        $this->container['firstName'] = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Gets lastName
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->container['lastName'];
+    }
+
+    /**
+     * Sets lastName
+     *
+     * @param string|null $lastName lastName
+     *
+     * @return $this
+     */
+    public function setLastName($lastName)
+    {
+        $this->container['lastName'] = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Gets company
+     *
+     * @return int|null
+     */
+    public function getCompany()
+    {
+        return $this->container['company'];
+    }
+
+    /**
+     * Sets company
+     *
+     * @param int|null $company company
+     *
+     * @return $this
+     */
+    public function setCompany($company)
+    {
+        $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
      * Gets title
      *
-     * @return \Messente\Phonebook\Model\ResponseErrorTitle
+     * @return string|null
      */
     public function getTitle()
     {
@@ -238,7 +361,7 @@ class ErrorItem implements ModelInterface, ArrayAccess
     /**
      * Sets title
      *
-     * @param \Messente\Phonebook\Model\ResponseErrorTitle $title title
+     * @param string|null $title title
      *
      * @return $this
      */
@@ -250,49 +373,97 @@ class ErrorItem implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets detail
+     * Gets custom
      *
-     * @return string
+     * @return string|null
      */
-    public function getDetail()
+    public function getCustom()
     {
-        return $this->container['detail'];
+        return $this->container['custom'];
     }
 
     /**
-     * Sets detail
+     * Sets custom
      *
-     * @param string $detail Free form more detailed description of the error.
+     * @param string|null $custom custom
      *
      * @return $this
      */
-    public function setDetail($detail)
+    public function setCustom($custom)
     {
-        $this->container['detail'] = $detail;
+        $this->container['custom'] = $custom;
 
         return $this;
     }
 
     /**
-     * Gets code
+     * Gets custom2
      *
-     * @return \Messente\Phonebook\Model\ResponseErrorCode
+     * @return string|null
      */
-    public function getCode()
+    public function getCustom2()
     {
-        return $this->container['code'];
+        return $this->container['custom2'];
     }
 
     /**
-     * Sets code
+     * Sets custom2
      *
-     * @param \Messente\Phonebook\Model\ResponseErrorCode $code code
+     * @param string|null $custom2 custom2
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setCustom2($custom2)
     {
-        $this->container['code'] = $code;
+        $this->container['custom2'] = $custom2;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom3
+     *
+     * @return string|null
+     */
+    public function getCustom3()
+    {
+        return $this->container['custom3'];
+    }
+
+    /**
+     * Sets custom3
+     *
+     * @param string|null $custom3 custom3
+     *
+     * @return $this
+     */
+    public function setCustom3($custom3)
+    {
+        $this->container['custom3'] = $custom3;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom4
+     *
+     * @return string|null
+     */
+    public function getCustom4()
+    {
+        return $this->container['custom4'];
+    }
+
+    /**
+     * Sets custom4
+     *
+     * @param string|null $custom4 custom4
+     *
+     * @return $this
+     */
+    public function setCustom4($custom4)
+    {
+        $this->container['custom4'] = $custom4;
 
         return $this;
     }

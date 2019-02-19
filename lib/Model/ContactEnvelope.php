@@ -1,6 +1,6 @@
 <?php
 /**
- * FetchBlacklistSuccess
+ * ContactEnvelope
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Messente\Phonebook\ObjectSerializer;
 
 /**
- * FetchBlacklistSuccess Class Doc Comment
+ * ContactEnvelope Class Doc Comment
  *
  * @category Class
  * @package  Messente\Phonebook
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
+class ContactEnvelope implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FetchBlacklistSuccess';
+    protected static $openAPIModelName = 'ContactEnvelope';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'phoneNumbers' => 'string[]'
+        'contact' => '\Messente\Phonebook\Model\ContactFields'
     ];
 
     /**
@@ -66,7 +66,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'phoneNumbers' => null
+        'contact' => null
     ];
 
     /**
@@ -96,7 +96,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'phoneNumbers' => 'phoneNumbers'
+        'contact' => 'contact'
     ];
 
     /**
@@ -105,7 +105,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'phoneNumbers' => 'setPhoneNumbers'
+        'contact' => 'setContact'
     ];
 
     /**
@@ -114,7 +114,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'phoneNumbers' => 'getPhoneNumbers'
+        'contact' => 'getContact'
     ];
 
     /**
@@ -177,7 +177,7 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['phoneNumbers'] = isset($data['phoneNumbers']) ? $data['phoneNumbers'] : null;
+        $this->container['contact'] = isset($data['contact']) ? $data['contact'] : null;
     }
 
     /**
@@ -205,25 +205,25 @@ class FetchBlacklistSuccess implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets phoneNumbers
+     * Gets contact
      *
-     * @return string[]|null
+     * @return \Messente\Phonebook\Model\ContactFields|null
      */
-    public function getPhoneNumbers()
+    public function getContact()
     {
-        return $this->container['phoneNumbers'];
+        return $this->container['contact'];
     }
 
     /**
-     * Sets phoneNumbers
+     * Sets contact
      *
-     * @param string[]|null $phoneNumbers phoneNumbers
+     * @param \Messente\Phonebook\Model\ContactFields|null $contact contact
      *
      * @return $this
      */
-    public function setPhoneNumbers($phoneNumbers)
+    public function setContact($contact)
     {
-        $this->container['phoneNumbers'] = $phoneNumbers;
+        $this->container['contact'] = $contact;
 
         return $this;
     }
