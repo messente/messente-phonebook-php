@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **email** | **string** |  | [optional] 
 **firstName** | **string** |  | [optional] 
 **lastName** | **string** |  | [optional] 
-**company** | **int** |  | [optional] 
+**company** | **string** |  | [optional] 
 **title** | **string** |  | [optional] 
 **custom** | **string** |  | [optional] 
 **custom2** | **string** |  | [optional] 

@@ -60,7 +60,7 @@ class ContactUpdateFields implements ModelInterface, ArrayAccess
         'email' => 'string',
         'firstName' => 'string',
         'lastName' => 'string',
-        'company' => 'int',
+        'company' => 'string',
         'title' => 'string',
         'custom' => 'string',
         'custom2' => 'string',
@@ -77,7 +77,7 @@ class ContactUpdateFields implements ModelInterface, ArrayAccess
         'email' => null,
         'firstName' => null,
         'lastName' => null,
-        'company' => 'int32',
+        'company' => null,
         'title' => null,
         'custom' => null,
         'custom2' => null,
@@ -327,7 +327,7 @@ class ContactUpdateFields implements ModelInterface, ArrayAccess
     /**
      * Gets company
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCompany()
     {
@@ -337,7 +337,7 @@ class ContactUpdateFields implements ModelInterface, ArrayAccess
     /**
      * Sets company
      *
-     * @param int|null $company company
+     * @param string|null $company company
      *
      * @return $this
      */
