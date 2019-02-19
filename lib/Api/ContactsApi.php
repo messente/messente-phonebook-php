@@ -2357,7 +2357,7 @@ class ContactsApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 201:
+                case 200:
                     if ('\Messente\Phonebook\Model\ContactEnvelope' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
@@ -2435,7 +2435,7 @@ class ContactsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Messente\Phonebook\Model\ContactEnvelope',
