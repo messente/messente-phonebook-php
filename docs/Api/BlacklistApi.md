@@ -5,9 +5,9 @@ All URIs are relative to *https://api.messente.com/v1/phonebook*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addToBlacklist**](BlacklistApi.md#addToBlacklist) | **POST** /blacklist | 
+[**deleteFromBlacklist**](BlacklistApi.md#deleteFromBlacklist) | **DELETE** /blacklist/{phone} | 
 [**fetchBlacklist**](BlacklistApi.md#fetchBlacklist) | **GET** /blacklist | 
 [**isBlacklisted**](BlacklistApi.md#isBlacklisted) | **GET** /blacklist/{phone} | 
-[**removeFromBlacklist**](BlacklistApi.md#removeFromBlacklist) | **DELETE** /blacklist/{phone} | 
 
 
 # **addToBlacklist**
@@ -60,6 +60,60 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **deleteFromBlacklist**
+> deleteFromBlacklist($phone)
+
+
+
+Deletes a phone number from the blacklist.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure HTTP basic authorization: basicAuth
+$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
+
+$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$phone = 'phone_example'; // string | A phone number
+
+try {
+    $apiInstance->deleteFromBlacklist($phone);
+} catch (Exception $e) {
+    echo 'Exception when calling BlacklistApi->deleteFromBlacklist: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **phone** | **string**| A phone number |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[basicAuth](../../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -144,60 +198,6 @@ try {
     $apiInstance->isBlacklisted($phone);
 } catch (Exception $e) {
     echo 'Exception when calling BlacklistApi->isBlacklisted: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **phone** | **string**| A phone number |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[basicAuth](../../README.md#basicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **removeFromBlacklist**
-> removeFromBlacklist($phone)
-
-
-
-Removes a phone number from the blacklist.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure HTTP basic authorization: basicAuth
-$config = Messente\Phonebook\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-$apiInstance = new Messente\Phonebook\Api\BlacklistApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$phone = 'phone_example'; // string | A phone number
-
-try {
-    $apiInstance->removeFromBlacklist($phone);
-} catch (Exception $e) {
-    echo 'Exception when calling BlacklistApi->removeFromBlacklist: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

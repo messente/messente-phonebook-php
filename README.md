@@ -90,9 +90,9 @@ $contacts = new ContactsApi($client, $config);
 // }
 
 // try {
-//     $blacklist->removeFromBlacklist('SOME_PHONE');
+//     $blacklist->deleteFromBlacklist('SOME_PHONE');
 // } catch (Exception $e) {
-//     echo 'Exception when calling removeFromBlacklist: ', $e->getMessage(), PHP_EOL;
+//     echo 'Exception when calling deleteFromBlacklist: ', $e->getMessage(), PHP_EOL;
 // }
 
 // try {
@@ -235,9 +235,9 @@ All URIs are relative to *https://api.messente.com/v1/phonebook*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *BlacklistApi* | [**addToBlacklist**](docs/Api/BlacklistApi.md#addtoblacklist) | **POST** /blacklist |
+*BlacklistApi* | [**deleteFromBlacklist**](docs/Api/BlacklistApi.md#deletefromblacklist) | **DELETE** /blacklist/{phone} |
 *BlacklistApi* | [**fetchBlacklist**](docs/Api/BlacklistApi.md#fetchblacklist) | **GET** /blacklist |
 *BlacklistApi* | [**isBlacklisted**](docs/Api/BlacklistApi.md#isblacklisted) | **GET** /blacklist/{phone} |
-*BlacklistApi* | [**removeFromBlacklist**](docs/Api/BlacklistApi.md#removefromblacklist) | **DELETE** /blacklist/{phone} |
 *ContactsApi* | [**addContactToGroup**](docs/Api/ContactsApi.md#addcontacttogroup) | **POST** /groups/{groupId}/contacts/{phone} |
 *ContactsApi* | [**createContact**](docs/Api/ContactsApi.md#createcontact) | **POST** /contacts |
 *ContactsApi* | [**deleteContact**](docs/Api/ContactsApi.md#deletecontact) | **DELETE** /contacts/{phone} |
