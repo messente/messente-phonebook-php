@@ -183,21 +183,12 @@ $contacts = new ContactsApi($client, $config);
 //     echo 'Exception when calling fetchContacts: ', $e->getMessage(), PHP_EOL;
 // }
 
-// NOT WORKING: https://github.com/messente/messente-phonebook-php/issues/7
 // try {
 //     $groupIds = array('SOME_GROUP_UUID', 'SOME_OTHER_GROUP_UUID');
 //     $response = $contacts->fetchContacts($groupIds);
 //     echo $response;
 // } catch (Exception $e) {
 //     echo 'Exception when calling fetchContacts: ', $e->getMessage(), PHP_EOL;
-// }
-
-// try {
-//   $groupIds = 'SOME_GROUP_UUID';
-//   $response = $contacts->fetchContacts($groupIds);
-//   echo $response;
-// } catch (Exception $e) {
-//   echo 'Exception when calling fetchContacts: ', $e->getMessage(), PHP_EOL;
 // }
 
 // try {
