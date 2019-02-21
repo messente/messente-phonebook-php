@@ -165,7 +165,7 @@ $contacts = new ContactsApi($client, $config);
 // try {
 //     $response = $contacts->fetchContact('SOME_PHONE');
 //     echo $response;
-// } catch (Exception s$e) {
+// } catch (Exception $e) {
 //     echo 'Exception when calling fetchContact: ', $e->getMessage(), PHP_EOL;
 // }
 
